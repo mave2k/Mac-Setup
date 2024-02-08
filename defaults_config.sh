@@ -69,6 +69,29 @@ defaults write com.apple.dock "show-recents" -bool "false"
 defaults write com.apple.dock "mineffect" -string "scale"
 # Scroll up on a Dock icon to show all Space's opened windows for an app, or open stack
 defaults write com.apple.dock "scroll-to-open" -bool "true"
+# Spring loading is enabled for Dock items
+defaults write com.apple.dock "enable-spring-load-actions-on-all-items" -bool "true"
+# Hot corners
+# Possible values:
+#  0: no-op
+#  2: Mission Control
+#  3: Show application windows
+#  4: Desktop
+#  5: Start screen saver
+#  6: Disable screen saver
+#  7: Dashboard
+# 10: Put display to sleep
+# 11: Launchpad
+# 12: Notification Center
+# 13: Lock Screen
+defaults write com.apple.dock wvous-bl-corner -int 4
+defaults write com.apple.dock wvous-bl-modifier -int 0
+defaults write com.apple.dock wvous-br-corner -int 3
+defaults write com.apple.dock wvous-br-modifier -int 0
+defaults write com.apple.dock wvous-tl-corner -int 13
+defaults write com.apple.dock wvous-tl-modifier -int 1048576
+defaults write com.apple.dock wvous-tr-corner -int 12
+defaults write com.apple.dock wvous-tr-modifier -int 0
 
 killall Dock
 ####################
@@ -122,8 +145,6 @@ killall Activity\ Monitor
 ####################
 # Misc Defaults
 echo "Setting Misc Defaults"
-# Spring loading is enabled for Dock items
-defaults write com.apple.dock "enable-spring-load-actions-on-all-items" -bool "true" && killall Dock
 # Focus Follows Mouse in Terminal
 defaults write com.apple.Terminal "FocusFollowsMouse" -bool "true" && killall Terminal
 # Set Function keys to default F-behavior
