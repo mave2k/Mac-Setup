@@ -14,7 +14,9 @@ xcode-select --install
 # Install if we don't have it
 if test ! $(which brew); then
   echo "Installing homebrew..."
-  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
+  eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
 # Update homebrew recipes
@@ -27,8 +29,8 @@ brew link git
 
 echo "Git config"
 
-git config --global user.name "Brad Parbs"
-git config --global user.email brad@bradparbs.com
+git config --global user.name "Daniel Kopenetz"
+git config --global user.email mave2k@gmail.com
 
 
 echo "Installing brew git utilities..."
@@ -39,94 +41,54 @@ brew install git-flow
 echo "Installing other brew stuff..."
 brew install tree
 brew install wget
-brew install trash
-brew install svn
-brew install mackup
 brew install node
-
 
 #@TODO install our custom fonts and stuff
 
 echo "Cleaning up brew"
 brew cleanup
 
-echo "Installing homebrew cask"
-brew install caskroom/cask/brew-cask
+# echo "Copying dotfiles from Github"
+# cd ~
+# git clone git@github.com:bradp/dotfiles.git .dotfiles
+# cd .dotfiles
+# sh symdotfiles
 
-echo "Copying dotfiles from Github"
-cd ~
-git clone git@github.com:bradp/dotfiles.git .dotfiles
-cd .dotfiles
-sh symdotfiles
-
-echo "Grunting it up"
-npm install -g grunt-cli
+# echo "Grunting it up"
+# npm install -g grunt-cli
 
 #Install Zsh & Oh My Zsh
 echo "Installing Oh My ZSH..."
-curl -L http://install.ohmyz.sh | sh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 echo "Setting up Oh My Zsh theme..."
-cd  /Users/bradparbs/.oh-my-zsh/themes
-curl https://gist.githubusercontent.com/bradp/a52fffd9cad1cd51edb7/raw/cb46de8e4c77beb7fad38c81dbddf531d9875c78/brad-muse.zsh-theme > brad-muse.zsh-theme
+# cd  /Users/bradparbs/.oh-my-zsh/themes
+# curl https://gist.githubusercontent.com/bradp/a52fffd9cad1cd51edb7/raw/cb46de8e4c77beb7fad38c81dbddf531d9875c78/brad-muse.zsh-theme > brad-muse.zsh-theme
+
 
 echo "Setting up Zsh plugins..."
-cd ~/.oh-my-zsh/custom/plugins
-git clone git://github.com/zsh-users/zsh-syntax-highlighting.git
+# cd ~/.oh-my-zsh/custom/plugins
+# git clone git://github.com/zsh-users/zsh-syntax-highlighting.git
+brew install zsh-autosuggestions
+echo "source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh" >> ${ZDOTDIR:-$HOME}/.zshrc
+brew install zsh-syntax-highlighting 
+echo "source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ${ZDOTDIR:-$HOME}/.zshrc
 
 echo "Setting ZSH as shell..."
 chsh -s /bin/zsh
 
 # Apps
+
 apps=(
-  alfred
-  bartender
-  bettertouchtool
-  cleanmymac
-  cloud
-  colloquy
-  cornerstone
-  diffmerge
-  dropbox
-  filezilla
-  firefox
-  google-chrome
-  harvest
-  hipchat
-  licecap
-  mou
-  phpstorm
-  private-internet-access
-  razer-synapse
-  sourcetree
-  steam
   spotify
-  vagrant
-  iterm2
-  sublime-text2
-  textexpander
-  virtualbox
-  mailbox
   vlc
-  skype
-  transmission
-  zoomus
-  onepassword
-  sequel-pro
-  chromecast
-  qlmarkdown
-  qlstephen
-  suspicious-package
+  dropbox
+  moom
 )
 
-# Install apps to /Applications
-# Default is: /Users/$user/Applications
 echo "installing apps with Cask..."
-brew cask install --appdir="/Applications" ${apps[@]}
+brew install --cask --appdir="/Applications" ${apps[@]}
 
-brew cask alfred link
-
-brew cask cleanup
 brew cleanup
 
 echo "Please setup and sync Dropbox, and then run this script again."
