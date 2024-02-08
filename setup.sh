@@ -70,9 +70,8 @@ echo "Setting up Zsh plugins..."
 # cd ~/.oh-my-zsh/custom/plugins
 # git clone git://github.com/zsh-users/zsh-syntax-highlighting.git
 brew install zsh-autosuggestions
-echo "source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh" >> ${ZDOTDIR:-$HOME}/.zshrc
 brew install zsh-syntax-highlighting 
-echo "source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ${ZDOTDIR:-$HOME}/.zshrc
+git clone https://github.com/jirutka/zsh-shift-select.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-shift-select
 
 echo "Setting ZSH as shell..."
 chsh -s /bin/zsh
@@ -87,15 +86,24 @@ apps=(
 )
 
 echo "installing apps with Cask..."
-brew install --cask --appdir="/Applications" ${apps[@]}
-
+brew install --cask --appdir="/Applications" spotify
+brew install --cask --appdir="/Applications" vlc
+brew install --cask --appdir="/Applications" dropbox
+brew install --cask --appdir="/Applications" moom
+brew install --cask --appdir="/Applications" obsidian
+brew install --cask --appdir="/Applications" synology drive
+brew install --cask --appdir="/Applications" 1password
 brew cleanup
+
+#@TODO Install moom config
+echo "Please setup and sync 1Password, and then run this script again."
+read -p "Press [Enter] key after this..."
+
+echo "Please setup and sync Synology Drive, and then run this script again."
+read -p "Press [Enter] key after this..."
 
 echo "Please setup and sync Dropbox, and then run this script again."
 read -p "Press [Enter] key after this..."
-
-echo "Restoring setup from Mackup..."
-#mackup restore @TODO uncomment
 
 echo "Done!"
 
