@@ -7,7 +7,7 @@ function continue_or_exit() {
 
     # Check the response and act accordingly
     case "$answer" in
-    [Yy][Ee][Ss] | [Yy][Ee][Ss])
+    [Yy] | [Yy][Ee][Ss])
         # Script continues
         echo "Continuing..."
         # Return 0 to indicate continuation
@@ -52,8 +52,6 @@ defaults write com.apple.finder "FXEnableExtensionChangeWarning" -bool "false"
 defaults write NSGlobalDomain "NSDocumentSaveNewDocumentsToCloud" -bool "false"
 # Remove the delay when hovering the toolbar title
 defaults write NSGlobalDomain "NSToolbarTitleViewRolloverDelay" -float "0"
-
-killall Finder
 ####################
 
 ####################
@@ -95,4 +93,57 @@ defaults write com.apple.Safari "ShowFullURLInSmartSearchField" -bool "true"
 killall Safari
 ####################
 
+####################
+# Desktop Defaults
+echo "Setting Desktop Defaults"
+# Keep folders on top when sorting
+defaults write com.apple.finder "_FXSortFoldersFirstOnDesktop" -bool "true"
+# Show hard disks
+defaults write com.apple.finder "ShowHardDrivesOnDesktop" -bool "true"
+# Show external disks
+defaults write com.apple.finder "ShowExternalHardDrivesOnDesktop" -bool "true"
+# Show removable media
+defaults write com.apple.finder "ShowRemovableMediaOnDesktop" -bool "true" 
+# Show connected servers on desktop
+defaults write com.apple.finder "ShowMountedServersOnDesktop" -bool "true"
+####################
 
+####################
+# Activity Monitor Defaults
+echo "Setting Activity Monitor Defaults"
+# Enable quick refresh
+defaults write com.apple.ActivityMonitor "UpdatePeriod" -int "1"
+# Show CPU History in Dock
+defaults write com.apple.ActivityMonitor "IconType" -int "6"
+
+killall Activity\ Monitor
+####################
+
+####################
+# Misc Defaults
+echo "Setting Misc Defaults"
+# Spring loading is enabled for Dock items
+defaults write com.apple.dock "enable-spring-load-actions-on-all-items" -bool "true" && killall Dock
+# Focus Follows Mouse in Terminal
+defaults write com.apple.Terminal "FocusFollowsMouse" -bool "true" && killall Terminal
+# Set Function keys to default F-behavior
+defaults write NSGlobalDomain com.apple.keyboard.fnState -bool true
+#"Allow text selection in Quick Look"
+defaults write com.apple.finder QLEnableTextSelection -bool TRUE
+#"Check for software updates daily, not just once per week"
+defaults write com.apple.SoftwareUpdate ScheduleFrequency -int 1
+#"Expanding the save panel by default"
+defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
+defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
+defaults write NSGlobalDomain PMPrintingExpandedStateForPrint2 -bool true
+#"Automatically quit printer app once the print jobs complete"
+defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
+#"Enabling subpixel font rendering on non-Apple LCDs"
+defaults write NSGlobalDomain AppleFontSmoothing -int 2
+#"Avoiding the creation of .DS_Store files on network volumes"
+defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+#"Disable the sudden motion sensor as its not useful for SSDs"
+sudo pmset -a sms 0
+
+killall Finder
+####################
