@@ -70,8 +70,12 @@ echo "Setting up Zsh plugins..."
 # cd ~/.oh-my-zsh/custom/plugins
 # git clone git://github.com/zsh-users/zsh-syntax-highlighting.git
 brew install zsh-autosuggestions
+echo "source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh" >> ~/.zshrc
 brew install zsh-syntax-highlighting 
-git clone https://github.com/jirutka/zsh-shift-select.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-shift-select
+echo "source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ~/.zshrc
+git clone https://github.com/jirutka/zsh-shift-select.git ~/.oh-my-zsh/custom/plugins/zsh-shift-select
+
+read -p "Add zsh-shift-select to the plugins{} section in your .zshrc-file"
 
 echo "Setting ZSH as shell..."
 chsh -s /bin/zsh
