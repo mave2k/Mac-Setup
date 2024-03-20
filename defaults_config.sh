@@ -165,6 +165,8 @@ defaults write NSGlobalDomain AppleFontSmoothing -int 2
 defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
 #"Disable the sudden motion sensor as its not useful for SSDs"
 sudo pmset -a sms 0
+# Play feedback when volume is changed: true
+/usr/bin/defaults write -g "com.apple.sound.beep.feedback" -int 1
 
 killall Finder
 ####################
