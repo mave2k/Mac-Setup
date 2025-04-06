@@ -59,29 +59,6 @@ brew cleanup
 # echo "Grunting it up"
 # npm install -g grunt-cli
 
-#Install Zsh & Oh My Zsh
-echo "Installing Oh My ZSH..."
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-
-echo "Setting up Oh My Zsh theme..."
-# cd  /Users/bradparbs/.oh-my-zsh/themes
-# curl https://gist.githubusercontent.com/bradp/a52fffd9cad1cd51edb7/raw/cb46de8e4c77beb7fad38c81dbddf531d9875c78/brad-muse.zsh-theme > brad-muse.zsh-theme
-
-
-echo "Setting up Zsh plugins..."
-# cd ~/.oh-my-zsh/custom/plugins
-# git clone git://github.com/zsh-users/zsh-syntax-highlighting.git
-brew install zsh-autosuggestions
-echo "source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh" >> ~/.zshrc
-brew install zsh-syntax-highlighting 
-echo "source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ~/.zshrc
-git clone https://github.com/jirutka/zsh-shift-select.git ~/.oh-my-zsh/custom/plugins/zsh-shift-select
-
-read -p "Add zsh-shift-select to the plugins{} section in your .zshrc-file"
-
-echo "Setting ZSH as shell..."
-chsh -s /bin/zsh
-
 # Apps
 
 echo "installing apps with Cask..."
@@ -100,7 +77,6 @@ apps=(
   canva
   vlc
   dropbox
-  moom
   obsidian
   logi-options+
   synology-drive
@@ -128,7 +104,11 @@ brew install --cask --appdir="/Applications" ${apps[@]}
 echo "Please install the following manually..."
 echo "Canon IJ Scan Utility Lite"
 echo "The correct MS Office package with your license"
+echo "Davinci Resolve"
+
+echo "Please install from the Mac App Store..."
 echo "Ausweis App"
+echo "Magnet"
 echo "Kindle"
 echo "Balckmagic Disk Speed Test"
 read -p "Press [Enter] key after this..."
@@ -153,6 +133,32 @@ read -p "Press [Enter] key after this..."
 
 echo "Please setup WISO Steuer 2024 & 2025."
 read -p "Press [Enter] key after this..."
+
+echo "Now check you login items!"
+read -p "Press [Enter] key after this..."
+
+#Install Zsh & Oh My Zsh
+echo "Installing Oh My ZSH..."
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+echo "Setting up Oh My Zsh theme..."
+# cd  /Users/bradparbs/.oh-my-zsh/themes
+# curl https://gist.githubusercontent.com/bradp/a52fffd9cad1cd51edb7/raw/cb46de8e4c77beb7fad38c81dbddf531d9875c78/brad-muse.zsh-theme > brad-muse.zsh-theme
+
+
+echo "Setting up Zsh plugins..."
+# cd ~/.oh-my-zsh/custom/plugins
+# git clone git://github.com/zsh-users/zsh-syntax-highlighting.git
+brew install zsh-autosuggestions
+echo "source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh" >> ~/.zshrc
+brew install zsh-syntax-highlighting 
+echo "source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ~/.zshrc
+git clone https://github.com/jirutka/zsh-shift-select.git ~/.oh-my-zsh/custom/plugins/zsh-shift-select
+
+read -p "Add zsh-shift-select to the plugins{} section in your .zshrc-file"
+
+echo "Setting ZSH as shell..."
+chsh -s /bin/zsh
 
 echo "Done!"
 
