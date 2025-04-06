@@ -93,7 +93,6 @@ apps=(
   firefox
   raycast
   spotify
-  kindle
   sonos
   audacity
   blackhole-2ch
@@ -123,13 +122,14 @@ apps=(
 # Install apps to /Applications
 # Default is: /Users/$user/Applications
 echo "installing apps with Cask..."
-brew cask install --appdir="/Applications" ${apps[@]}
+brew install --cask --appdir="/Applications" ${apps[@]}
 
 # Manual App installs
 echo "Please install the following manually..."
 echo "Canon IJ Scan Utility Lite"
 echo "The correct MS Office package with your license"
 echo "Ausweis App"
+echo "Kindle"
 echo "Balckmagic Disk Speed Test"
 read -p "Press [Enter] key after this..."
 
