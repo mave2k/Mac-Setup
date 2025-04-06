@@ -133,13 +133,13 @@ read -p "Press [Enter] key after this..."
 brew cleanup
 
 #@TODO Install moom config
+echo "Please setup and sync 1Password."
+read -p "Press [Enter] key after this..."
+
 echo "Please setup LogiOptions+."
 read -p "Press [Enter] key after this..."
 
 echo "Please setup Moom."
-read -p "Press [Enter] key after this..."
-
-echo "Please setup and sync 1Password."
 read -p "Press [Enter] key after this..."
 
 echo "Please setup and sync Synology Drive."
