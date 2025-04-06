@@ -82,31 +82,73 @@ chsh -s /bin/zsh
 
 # Apps
 
+echo "installing apps with Cask..."
+
+# Apps
 apps=(
+  google-chrome
+  brave-browser
+  firefox
   spotify
+  kindle
+  sonos
+  audacity
+  blackhole-2ch
+  calibre
+  canva
   vlc
   dropbox
   moom
+  obsidian
+  logi-options+
+  synology-drive
+  synology-image-assistant
+  1password
+  cyberduck
+  visual-studio-code
+  affinity-designer
+  affinity-photo
+  whatsapp
+  zoom
+  microsoft-teams
+  moneymoney
+  steam
+  wiso-steuer-2024
+  wiso-steuer-2025
 )
 
+# Install apps to /Applications
+# Default is: /Users/$user/Applications
 echo "installing apps with Cask..."
-brew install --cask --appdir="/Applications" spotify
-brew install --cask --appdir="/Applications" vlc
-brew install --cask --appdir="/Applications" dropbox
-brew install --cask --appdir="/Applications" moom
-brew install --cask --appdir="/Applications" obsidian
-brew install --cask --appdir="/Applications" synology drive
-brew install --cask --appdir="/Applications" 1password
+brew cask install --appdir="/Applications" ${apps[@]}
+
+# Manual App installs
+echo "Please install the following manually..."
+echo "Canon IJ Scan Utility Lite"
+echo "The correct MS Office package with your license"
+echo "Ausweis App"
+echo "Balckmagic Disk Speed Test"
+read -p "Press [Enter] key after this..."
+
 brew cleanup
 
 #@TODO Install moom config
-echo "Please setup and sync 1Password, and then run this script again."
+echo "Please setup LogiOptions+."
 read -p "Press [Enter] key after this..."
 
-echo "Please setup and sync Synology Drive, and then run this script again."
+echo "Please setup Moom."
 read -p "Press [Enter] key after this..."
 
-echo "Please setup and sync Dropbox, and then run this script again."
+echo "Please setup and sync 1Password."
+read -p "Press [Enter] key after this..."
+
+echo "Please setup and sync Synology Drive."
+read -p "Press [Enter] key after this..."
+
+echo "Please setup and sync Dropbox."
+read -p "Press [Enter] key after this..."
+
+echo "Please setup WISO Steuer 2024 & 2025."
 read -p "Press [Enter] key after this..."
 
 echo "Done!"
