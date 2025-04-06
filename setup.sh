@@ -42,6 +42,8 @@ echo "Installing other brew stuff..."
 brew install tree
 brew install wget
 brew install node
+brew install exiftool
+brew install ffmpeg
 
 #@TODO install our custom fonts and stuff
 
@@ -89,6 +91,7 @@ apps=(
   google-chrome
   brave-browser
   firefox
+  raycast
   spotify
   kindle
   sonos
