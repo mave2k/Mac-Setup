@@ -65,47 +65,46 @@ echo "installing apps with Cask..."
 
 # Apps
 apps=(
-  google-chrome
-  brave-browser
-  firefox
-  raycast
-  spotify
-  sonos
-  audacity
-  blackhole-2ch
-  calibre
-  canva
-  vlc
-  dropbox
-  obsidian
-  logi-options+
-  synology-drive
-  synology-image-assistant
   1password
   cyberduck
+  moneymoney
   visual-studio-code
   affinity-designer
+  dropbox
+  obsidian
+  vlc
   affinity-photo
+  firefox
+  raycast
   whatsapp
-  zoom
-  microsoft-teams
-  moneymoney
-  steam
+  audacity
+  google-chrome
+  sonos
   wiso-steuer-2024
+  blackhole-2ch
+  hammerspoon
+  spotify
   wiso-steuer-2025
+  brave-browser
+  logi-options+
+  steam
+  zoom
+  calibre
+  microsoft-auto-update
+  synology-drive
+  canva
+  microsoft-teams
+  synology-image-assistant
+  postman
 )
 
 # Install apps to /Applications
 # Default is: /Users/$user/Applications
-echo "installing apps with Cask..."
 brew install --cask --appdir="/Applications" ${apps[@]}
 
-# Manual App installs
-echo "Please install the following manually..."
-echo "Canon IJ Scan Utility Lite"
-echo "The correct MS Office package with your license"
-echo "Davinci Resolve"
+brew cleanup
 
+# Manual App installs
 echo "Please install from the Mac App Store..."
 echo "Ausweis App"
 echo "Magnet"
@@ -113,25 +112,26 @@ echo "Kindle"
 echo "Balckmagic Disk Speed Test"
 read -p "Press [Enter] key after this..."
 
-brew cleanup
+echo "Please install the following manually..."
+echo "Canon IJ Scan Utility Lite"
+echo "Office 2021 Home & Business"
+echo "Davinci Resolve"
+read -p "Press [Enter] key after this..."
 
-#@TODO Install moom config
+
 echo "Please setup and sync 1Password."
 read -p "Press [Enter] key after this..."
 
 echo "Please setup LogiOptions+."
 read -p "Press [Enter] key after this..."
 
-echo "Please setup Moom."
+echo "Please setup Magnet."
 read -p "Press [Enter] key after this..."
 
 echo "Please setup and sync Synology Drive."
 read -p "Press [Enter] key after this..."
 
 echo "Please setup and sync Dropbox."
-read -p "Press [Enter] key after this..."
-
-echo "Please setup WISO Steuer 2024 & 2025."
 read -p "Press [Enter] key after this..."
 
 echo "Now check you login items!"
@@ -141,25 +141,14 @@ read -p "Press [Enter] key after this..."
 echo "Installing Oh My ZSH..."
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-echo "Setting up Oh My Zsh theme..."
-# cd  /Users/bradparbs/.oh-my-zsh/themes
-# curl https://gist.githubusercontent.com/bradp/a52fffd9cad1cd51edb7/raw/cb46de8e4c77beb7fad38c81dbddf531d9875c78/brad-muse.zsh-theme > brad-muse.zsh-theme
-
-
 echo "Setting up Zsh plugins..."
-# cd ~/.oh-my-zsh/custom/plugins
-# git clone git://github.com/zsh-users/zsh-syntax-highlighting.git
 brew install zsh-autosuggestions
 echo "source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh" >> ~/.zshrc
 brew install zsh-syntax-highlighting 
 echo "source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ~/.zshrc
 git clone https://github.com/jirutka/zsh-shift-select.git ~/.oh-my-zsh/custom/plugins/zsh-shift-select
 
-read -p "Add zsh-shift-select to the plugins{} section in your .zshrc-file"
-
 echo "Setting ZSH as shell..."
 chsh -s /bin/zsh
 
 echo "Done!"
-
-#@TODO install vagrant and sites folder
